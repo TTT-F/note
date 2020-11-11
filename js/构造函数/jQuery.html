@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box"></div>
+    <p>hahahah woshiftt</p>
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script>
+        // jQuery就相当于一个非常大的构造函数
+        // $是构造函数的名字
+        $.prototype.hello = function() {
+                console.log('hello ')
+            }
+            // 可以这样给jQuery添加方法
+        $('.box').hello()
+            // $('.box') 创建出来了一个jQuery实例化对象，然后它可以用jq里面所有的方法
+            // 扩展jQuery
+            // jQuery提供的添加公共功能的方法 jQuery.fn.extend
+            // 文字高亮功能
+            // jQuery.fn.extend({
+            //     highLight: function() {
+            //         this.css({
+            //             'color': 'red',
+            //             'fontStyle': 'italic'
+            //         })
+            //     }
+
+        // })
+        jQuery.fn.extend({
+                highLight: function(setting) {
+                    this.css({
+                        'color': setting.color,
+                        'fontStyle': 'italic',
+                        'backgroundColor': setting.bgColor
+                    })
+                }
+
+            }) //这样创建出来的用户体验好
+        $('p').highLight({
+            color: 'red',
+            bgColor: 'blue'
+        })
+
+        // 对象的合并  对象的拷贝
+        // Object.assign({},obj,obj1)
+        // for in
+        // $.extend({},obj,obj1)
+        //有重名的 后面的对象会覆盖前面的
+    </script>
+</body>
+
+</html>

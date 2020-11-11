@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>第二页</h1>
+    <a href="./third.html">第三页</a>
+    <button class="back">返回</button>
+    <button class="fore">前进</button>
+
+    <script>
+        document.querySelector('.back').onclick = function() {
+            history.back()
+        }
+        document.querySelector('.fore').onclick = function() {
+            history.forward()
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js"></script>
+
+    <script>
+        // const xhr = new XMLHttpRequest();
+        // // get方式
+        // // 创建请求，open('请求的类型'，'地址'，是否异步)
+        // // 请求类型是后台规定的，不用管；地址：后台服务器地址；是否异步：true异步 false 同步，一般都是异步
+        // // 请求类型: GET POST PUT PATCH DELETE ...
+        // xhr.open("GET", "http://jsonplaceholder.typicode.com/posts", true)
+        //     // 发送时可以带参数，get请求不用带
+        // xhr.send()
+        //     // 监听整个请求过程
+        //     // xhr.readyState请求状态值，0-4
+        //     // 0：还没调用open
+        //     // 1：已调用open但没有调用send
+        //     // 2：(发送) 已经调用send()方法，但还没有接收到响应。
+        //     // 3：(接收) 已经接收到部分响应数据。
+        //     // 4：请求完成就绪
+        //     // xhr.status请求状态码 [200,299] 完成ok
+
+        // xhr.onreadystatechange = function() {
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         // xhr.responseText 获取后台数据
+        //         console.log(JSON.parse(xhr.responseText));
+        //         // 获取到的数据是类似数组字符串，json串，需要用json.parse()转换成数组
+        //         // json串：属性名和属性值必须使用双引号，数字和布尔值不需要，最后一项没有逗号
+        //     }
+
+        // }
+        // post请求方式
+        // xhr.open('POST', 'https://cnodejs.org/api/v1/accesstoken', true)
+        //     // 发送请求时需要向后台传递数据
+        //     // 原生ajax 不能接收对象为参数，只可接受json串，而且得设置请求可以传递json
+        //     // 所以需要使用xhr.setRequestHeader()设置请求头
+        //     // 添加json为可传递数据，使用json.stringify()将对象转化为json串
+        // xhr.setRequestHeader('content-type', 'application/json')
+        //     // ecf878d1-6052-476a-8262-824760c7872b 标识码，把他想成密码就行了
+        // xhr.send(JSON.stringify({
+        //     accesstoken: 'ecf878d1-6052-476a-8262-824760c7872b'
+        // }))
+        // xhr.onreadystatechange = function() {
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         console.log(JSON.parse(xhr.responseText));
+        //     }
+        // };
+        // jquery ajax
+        // $.get('address','parameter','回调函数','返回内容的格式')
+        // 地址：后台接口地址
+        // 参数： 请求时的参数，不要可省略
+        // 返回内容格式，默认是json 不需要设置
+        // 回调函数：函数执行成功后的相应（执行的函数），默认接受一个参数
+        // $.get("http://localhost:3000/posts", function(res) {
+        //     console.log(res);
+        // })
+        // post 请求
+        // // $.post(地址，参数，回调函数，返回内容的格式)
+        // $.post("https://cnodejs.org/api/v1/accesstoken", {
+        //         accesstoken: 'ecf878d1-6052-476a-8262-824760c7872b'
+        //     },
+        //     function(res) {
+        //         console.log(res);
+
+        //     }
+        // )
+        // ajax 方法
+        // $.ajax({
+        //     // 请求类型
+        //     type: 'POst',
+        //     // 请求地址
+        //     url: "https://cnodejs.org/api/v1/accesstoken",
+        //     // 请求参数
+        //     data: {
+        //         accesstoken: 'ecf878d1-6052-476a-8262-824760c7872b'
+        //     },
+        //     // 请求成功的回调
+        //     success: function(res) {
+        //         console.log(res);
+        //     },
+        //     // 请求失败的回调
+        //     error: function(err) {
+        //         console.log(err);
+        //     },
+        //     // 请求结束的回调
+        //     complete: function() {},
+        //     // 发送给后台内容类型 默认支持对象类型
+        //     contentType: '',
+        //     // 请求是否跨域 false 同域，true 跨域
+        //     // 一般后台解决跨域请求问题，不需要前台来设置
+        //     // 当然也有前后台一起解决的，前端须有做一些简单的配置
+        //     // crossDmain: boolean,
+        //     // headers:请求头设置，可能配合后台做一些设置
+
+        // })
+        // $.ajax({
+        //         // type不写默认是get请求
+        //         // 地址栏的 ? 部分就是查询部分
+        //         // url: "http://localhost:3000/posts?_limit=10&_page=1",可以这样将参数和地址用问号连接起来
+        //         // 方式2；可以将参数写在data中
+        //         // /n 拿id为n的数据
+        //         url: "http://localhost:3000/posts/2",
+        //         // data: {
+        //         //     _limit: 10,
+        //         //     _page: 1
+        //         // },
+        //         // 函数简写 es6
+        //         success(res) {
+        //             console.log(res);
+        //         }
+
+        //     }
+
+        // )
+        // for (let index = 0; index < 1000; index++) {
+        //     console.log(1000);
+        //     setTimeout(() => console.log('hah'), 1000)
+
+        // }
+        // promise 
+        // let num = 1
+        // const promise = new Promise(function(resolve, reject) {
+        //     // ... some code
+        //     num = 2
+        //     console.log('工作');
+        //     if (num === 1) {
+        //         console.log('成功')
+        //         resolve(1); //resolve 成功执行后的调用then里面的回调函数的，可以传参，then的回调函数中必须有形参
+        //     } else {
+        //         console.log('失败')
+
+        //         reject(1); //reject 失败后调用catch里面的回调函数的，可以传参，catch的回调函数中必须有形参
+        //     }
+        // });
+        // // .then 传递 resolve 函数的
+        // // .catch 传递 reject 函数的
+        // promise.then(function(a) {
+        //     console.log('the work is over , please do next work' + a);
+
+        // })
+        // promise.catch(function(a) {
+        //     console.log('error work' + a);
+
+        // })
+        // 将promise封装在函数里，因为异步操作一般是在需要时才调用，所以这是一般操作
+
+
+        // function times(ms) {
+        //     // 将promise作为一个返回对象送出去
+        //     return new Promise(function(resolve, reject) {
+        //         setTimeout(resolve, ms, 'done')
+        //             // resolve在这里作为 setTimeout 的回调函数 done是resolve的参数
+        //             // setTimeout这种的操作 从第三个参数开始，都是它里面函数的参数
+        //             // resolve 调用 then,
+        //     })
+
+
+        // }
+        // console.log(times(1000));
+        // // -->Promise {<pending>}__proto__: Promisecatch: ƒ catch()constructor: ƒ Promise()finally: ƒ finally()then: ƒ then()Symbol(Symbol.toStringTag): "Promise"__proto__: Object[[PromiseStatus]]: "resolved"[[PromiseValue]]: "done"
+        // // times（100）这里就是返回的promis对象(正在进行的)
+        // // .then 回应resolve 传递resolve函数
+        // times(1000).then(function(tip) {
+        //     console.log(tip);
+
+        // })
+        // .then 成功函数
+        // .err 失败函数
+        axios.get('http://localhost:3000/posts').then(function(res) {
+            console.log(res.data)
+                // axios 会将后台返回的数据放到一个对象的data属性中
+
+        }).catch(function(err) {
+            console.log(err);
+
+        })
+    </script>
+</body>
+
+</html>

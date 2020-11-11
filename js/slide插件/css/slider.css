@@ -1,0 +1,84 @@
+/* 轮播的最大 div */
+.slider {
+  width: 600px;
+  height: 300px;
+  margin: 40px auto 0;
+  overflow: hidden;
+  position: relative
+}
+
+/* 下面的小点 ul */
+.slider .pointer {
+  list-style: none;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  z-index: 4;
+  text-align: center
+}
+
+.slider .pointer>li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #fff
+}
+
+.slider .pointer>li:not(:last-child) {
+  margin-right: 10px
+}
+
+/* 选中颜色的名 .current */
+.slider .pointer>li.current {
+  background-color: #007aff
+}
+
+/* 放图片的 ul  */
+.slider .sliderUl {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  list-style: none;
+  transition: margin-left 0.75s;
+  /* jquery 的 animate   可能需要  stop */
+}
+
+.slider .sliderLi {
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 左右箭头 */
+.slider .nextBtn,
+.slider .preBtn {
+  outline: 0;
+  border: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 10;
+  color: #fff;
+  font-family: "宋体";
+}
+
+.slider .nextBtn {
+  right: 0;
+  left: auto
+}

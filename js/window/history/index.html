@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>第一页</h1>
+    <a href="./second.html">第二页</a>
+    <button class="back">返回</button>
+    <button class="fore">前进</button>
+
+    <script>
+        document.querySelector('.back').onclick = function() {
+            // history.back()
+            history.go(-1)
+        }
+        document.querySelector('.fore').onclick = function() {
+            // history.forward()
+            history.go(1)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/jdSlider.css">
+</head>
+
+<body>
+    <div class="slider"></div>
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/jdSlider.js"></script>
+    <script>
+        $('.slider').slider({
+            vwidth: 800,
+            imgArr: ['./images/pic1.jpg', './images/pic2.jpg', './images/pic3.jpg', './images/pic4.jpg', './images/pic5.jpg', './images/pic6.jpg', './images/pic7.jpg'],
+            current: 3,
+            isPlay: true,
+            isHasPagenation: true
+        })
+    </script>
+</body>
+
+</html>

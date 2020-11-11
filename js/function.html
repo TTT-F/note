@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function函数 重要！！！</title>
+</head>
+
+<body>
+    <input class="num1" type="text">
+    <input class="sign" type="text">
+    <input class="num2" type="text">
+    <button class="equal">=</button>
+    <button class="test">测试this</button>
+    <input type="text">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        // 函数: 装代码块的地方。  装功能的地方   --->  功能的复用
+        // 创建 
+        // 1. 函数式创建
+        function fun() {
+            console.log('毕业见!!!')
+        }
+
+        // 2. 变量式创建
+        var fun = function() {
+                console.log('毕业见!!!')
+            }
+            // 函数创建(声明)的时候不执行，调用的时候才执行
+            // 函数的调用    函数名()
+
+
+
+        // 实现两个数的和运算
+        // 函数可以设置参数 需要外界给函数传递两个数那么就需要函数在定义的时候设置参数
+        // 函数定义的时候设置参数称之为形参(当样子的参数)
+        // 需要函数调用的时候传递参数 参数是有顺序的
+        // add(1,2) 调用的时候传递参数  将这个参数称为实参(真正的数)
+        // 功能实现之后需要将运算的结果暴露导函数外面 就需要设置函数的返回值
+        // 直接在函数内部使用 return关键字将需要的值暴露
+        // return 关键字有两个作用 1.返回值  2.跳出函数
+        // 如何获取函数的返回值， 函数调用完毕之后整个函数调用的语句会直接变成返回值
+        function caculation(a, operator, b) {
+            var res = 0;
+            console.log(a, b, operator)
+            switch (operator) {
+                case '+':
+                    return res = a * 1 + b * 1;
+                case '-':
+                    return res = a - b;
+                case '*':
+                    return res = a * b;
+                case '/':
+                    return res = a / b;
+            }
+
+        }
+        $('.equal').click(function() {
+                var num1 = $('.num1').val()
+                var sign = $('.sign').val()
+                var num2 = $('.num2').val()
+                var res = caculation(num1, sign, num2)
+                console.log(res)
+
+                // function fun() {
+                //     var a = 1;
+                //     console.log(a)
+                // }
+                // fun()
+            })
+            //函数的作用于
+            //只有函数有作用于
+            //作用域分两种
+            //1.全局（整个页面）2.局部（函数内）
+            //全局作用域下定义的变量任何地方可以使用，局部只能在本身函数体和子作用域中使用
+            //注意：一个功能使用了两次及以上就需要封装到函数内
+            // 注意：定义的函数必须要调用
+
+
+
+        //特殊函数
+        //回调函数
+        // 递归函数
+        // 闭包
+        // 构造
+
+
+        // 函数中的this-->他是调用该函数的对象
+        // 1.
+        function testThis() {
+            console.log(this)
+        }
+        window.testThis()
+
+        //2.
+        document.querySelector('.test').onclick = function() {
+            console.log(this)
+        }
+
+
+        // 3.
+        var obj = {
+            name: 'hh',
+            say: function() {
+                console.log(this)
+            }
+        }
+        obj.say()
+    </script>
+</body>
+
+</html>

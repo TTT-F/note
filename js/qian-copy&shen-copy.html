@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //浅拷贝：
+        // 实现方式：2.object.assign() 2.  ... 3. for in
+        //只拷贝第一层，其他内层对象只拷贝“引用”
+        // article对象有两个地址，article自己占有一个，author占一个（因为author也是一个对象）
+        var article = {
+                title: "iPhone 12",
+                author: {
+                    name: 'li',
+                    age: 30,
+                }
+            }
+            //1. Object.assign(obj，obj1.。。) 对象的合并，会将后面的对象参数合并到第一个里面
+        var newArticle = Object.assign({}, article)
+        console.log(newArticle)
+        newArticle.title = 'iphone 11'
+        console.log(newArticle)
+        console.log(article)
+        newArticle.author.age = 31
+        console.log(newArticle)
+        console.log(article)
+            // 浅拷贝更改内层引用的话，指向的原内容也会改变（因为内层存的是引用地址，它是指向author的地址的）
+
+
+        // 2 ... 展开运算符
+        var newArticle1 = {...article
+        }
+        console.log(newArticle1)
+
+        // 3 for in 语句-->遍历对象
+        var obj = {
+            a: 100,
+            b: 'hello'
+        }
+        for (const key in obj) {
+            //   key 对象内的属性名
+            // 当对象的属性名使用变量表示的，n那么访问这个对象的属性的属性值需要用[属性值]
+            console.log(key)
+            console.log(obj[key])
+                // 拿到属性值
+                // 不能obj.key 这么着是拿到key（属性名）的属性值
+        }
+        var newArticle2 = {}
+        for (var key in article) {
+            newArticle2[key] = article[key]
+        }
+        console.log(newArticle2)
+
+
+
+
+
+        // 深拷贝
+        // 1.JSON.parse(JSON.stringify())
+        // JSON.parse 将json字符串转化成对象
+        // JSON.stringify(obj) 将对象变成json字符串
+        console.log(JSON.stringify(obj))
+        var newArticle3 = JSON.parse(JSON.stringify(article))
+            // 转成字符串了，会开辟一个空间a存放，和原来的对象一点关系都没有。然后将空间a里面的字符串转成对象，和原来的更没关系了
+        newArticle3.author.age = 34
+        console.log(newArticle3)
+        console.log(article)
+            // 2.递归
+
+        // 数据类型 number boolean null undefined object 
+        // object 对象类型|引用类型
+        // 数据类型检测 ：typeof null会检测成object
+        // 数组、函数、{} 用来检测Object 都是 true
+        // // (用来检测对象类型 如用new定义、数组、函数)instanceof ---> 数据 instanceof 类型(首字母大写)---结果true|false
+        // var a = null
+        // console.log(a instanceof Object)
+        // var newArticle4 = {}
+        // for (var key in article) {
+        //     // 当对象属性时普通类型 可以直接复制
+        //     // 当对象属性时对象类型 要for in
+        //     if(article[key] instanceof Array){
+        //         newArticle4[key] = []
+        //         for (var k in article[key]) {
+        //             newArticle4[key][k] = article[key][k]
+
+        //         }
+        //     }else if (article[key] instanceof Object) {
+        //         newArticle4[key] = {}
+        //         for (var k in article[key]) {
+        //             newArticle4[key][k] = article[key][k]
+
+        //         }
+
+        //     } else {
+        //         newArticle4[key] = article[key]
+        //     }
+        // }
+        function deepCopy(obj) {
+            var newobj = obj instanceof Array ? [] : {}
+            for (var key in obj) {
+
+            }
+        }
+    </script>
+</body>
+
+</html>

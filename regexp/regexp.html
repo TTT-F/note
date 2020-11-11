@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正则表达式 RegExp
+        // 检测字符串的一个规则
+
+        // 创建  
+        // 包含三个连续字符 bai
+        // var re = /bai/
+        // 使用  .test -->返回  true  false     .exec  -->返回 详细结果  null
+        // var str = 'hello xiaobai'
+        // console.log(re.exec(str))
+        // 规则
+        // 位数 
+        // [] 一位      [0-9] 一位数字     [a-z]一位小写字母   [A-Z]一位大写字母   [A-z]一位字母或下划线
+        // {} 在某一个字符后面加上{} 代表这个字符的位数    {n}   {n,m}   {n,}     
+        // {0,1} ===  ?   {0,} ===   *    {1,} === +
+        // ^开头   $结尾
+        // | 或    ()先运算
+
+
+        // 正则内想要写一些原本正则里面有意义的字符 需要加上转义符 \
+        // var re = /[abc][def]h/
+        // var re1 = /[A-z0-9]/
+        // console.log(re1.exec('_hello'))
+        // var re = /^a+$/
+        // var re = /^[0-9]{3}@(qq|QQ).com$/
+        // 345@QQ.com
+        // var str = '1345@QQ.com'
+        // console.log(str.length)
+        var re = /^1[3678][6789][0-9]{8}$/
+            //         \d 等价于[0-9]  一位任意数字字符
+            //   - \D \d的反义 一位任意非数字字符
+            //   - \w 等价于 [A-z] 一位任意字母数字下划线
+            //   - \W  \w 的反义
+            //   - \s 一位任意空白符(空格或者回车)
+            //   - \S  \s 的反义
+            //   - 中括号里面的 ^  (不好理解看下面例子)
+        var re = /[abc]/ //这个正则的意思是一位 a 或 b 或 c
+        var re1 = /[^abc]/ //这个正则的意思是一位非(a 或 b 或 c ) 的字符
+        var re2 = /[^0-9]/ //这个正则的意思是一位非数字的字符
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html?utm_source=tuicool&utm_medium=referral">严格模式</a>
+    <script>
+        // 严格模式
+        // 1.禁止不使用var const let 声明创建变量
+        // 2.禁止this指向全局变量
+        var a = 10
+
+        function fun() {
+            "use strict";
+            // console.log(this.a) //-->undefined ，不加严格模式应该会输出10
+            //-->输出undefined，因为严格模式下，没标明谁调用fun（）则表示没人调用不会默认表示window，所以this指向undefined
+
+        }
+
+        fun()
+            // 3.删除对象属性
+        var obj = {
+            name: "lily",
+            age: 18
+        }
+        delete obj.age
+        console.log(obj)
+    </script>
+</body>
+
+</html>

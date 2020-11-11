@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document方法属性测试+评论添加删除</title>
+
+</head>
+
+<body>
+    <div class="box" style="width: 200px; height: 200px; background-color: red;">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </div>
+    <div class="pinglun">
+        <input type="text">
+        <button class="add">评论</button>
+        <div class="list">
+            <li>aaa</li>
+            <li>bbb</li>
+        </div>
+    </div>
+    <script>
+        var newLi = document.createElement('li')
+            // newLi.innerText = 'hahah'
+        newLi.innerHTML = 'hahha<a href="#">hohoho</a>'
+            // document.querySelector('.box').appendChild(newLi)
+        document.querySelector('.box').insertBefore(newLi, document.querySelectorAll('li')[1])
+        document.querySelector('.add').onclick = function() {
+            var newLi1 = document.createElement('li')
+            var text = document.querySelector('input').value
+            newLi1.innerHTML = text + '<button class="del">删除</button>'
+            document.querySelector('.list').appendChild(newLi1)
+        }
+        document.querySelector('.list').onclick = function(event) {
+            targetDom = event.target
+                // console.log(targetDom.className === 'del')
+            if (targetDom.className === 'del' && targetDom.tagName === 'BUTTON') {
+                this.removeChild(targetDom.parentNode)
+            }
+        }
+    </script>
+</body>
+
+</html>

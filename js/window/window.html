@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="http://www.baidu.com" target="_blank">百度</a>
+    <button class=".btn">百度</button>
+    <script>
+        //定义的全局变量和全局函数相当于浏览器对象下的属性和方法
+        var num = 100;
+        console.log(window.num, num)
+
+        function fun() {
+            console.log(11)
+        }
+        window.fun()
+        fun()
+            //window的属性
+            //1.document 文档-->看dom节点
+            //2. history 历史文档 
+            //可以用它返回上一个或下一个浏览过的节点 -->history文件夹
+            //3.location 获取当前页面的URL信息
+            // 如地址为：
+            //  https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&wq=%E6%89%8B%E6%9C%BA&pvid=f168af5e398d4f5f904f268e6e6439f3
+
+        //属性：
+
+        // href 获取地址栏的完整地址
+        console.log(location.href)
+            // --> https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&wq=%E6%89%8B%E6%9C%BA&pvid=f168af5e398d4f5f904f268e6e6439f3
+            //href属性可以进行页面跳转
+        document.querySelector('button').onclick = function() {
+                location.href = 'http://www.baidu.com'
+                    // window.open('http://www.baidu.com') 这句打开新的页面===target='_blank'
+            }
+            // hostname 获取域名
+        console.log(location.hostname)
+            //--> search.jd.com
+
+        // pathname 获取路径名
+        console.log(location.pathname)
+            //--> /search
+
+        // search 查询部分
+        console.log(location.search)
+            // --> ?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&wq=%E6%89%8B%E6%9C%BA&pvid=f168af5e398d4f5f904f268e6e6439f3
+
+        // protocol 获取协议
+        console.log(location.protocol)
+            //--> http
+
+
+        //4.screen 对象包含有关客户端显示屏幕的信息
+        //5. navigator 浏览器的相关信息
+    </script>
+</body>
+
+</html>

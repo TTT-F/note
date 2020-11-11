@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+        }
+        
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <div class="box2"></div>
+    <div class="box"></div>
+    <script src="./js/myJQ.js"></script>
+    <script>
+        $(".box").css('background-color', 'red')
+        $(".box2").css({
+            "border": '4px solid blue',
+            "background-color": 'red',
+            "border-radius": '50%'
+        })
+        $('.box2').attr('class', 'box2 xx')
+        console.log($('.box2').attr('class'))
+    </script>
+</body>
+
+</html>

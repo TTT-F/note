@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象 重要！！！</title>
+</head>
+
+<body>
+    <script>
+        //number String boolean undefined  null object symbol
+        //数据类型分两类-->  1.基础类型    2.复杂类型 object
+        //基础类型在浏览器中存放的就是值本身
+        //复杂类型在浏览器中存放的是地址
+
+
+
+        //对象 object
+        // 属性名：属性值
+        // 当属性的属性值是函数时称这个属性-->方法
+        // 定义对象
+        var goods = {
+            goodsName: 'iPhone',
+            goodsPrse: 3000,
+            say: function() {
+                console.log('新品')
+            }
+        }
+        console.log(goods);
+        console.log(goods.goodsName) //对象属性的调用
+        goods.say() //对象方法的调用
+
+        //null 声明了一个对象但是没有复制
+        console.log(typeof null) //-->Object
+            // 报错:xxx of null 表示xxx前面的是一个对象但是没赋值
+        var obj = {
+            name: 'wang',
+            age: 10
+        }
+        var obj2 = {
+                name: 'wang',
+                age: 10
+            }
+            // console.log(obj === obj2)---->false
+            //因为object是复杂类型，他在浏览器中存放的是存储地址而不是具体的值
+            // obj 和 obj2 都存的是地址，所以两个结果为false
+        var obj1 = obj
+        obj1.name = 'liu';
+        // console.log(obj.name)--->liu
+        // 把obj的地址赋给了obj1，所以obj1现在也是只想obj中的内容的，所以修改obj1也相当于修改了obj指向的内容  
+
+
+
+
+
+        // object : 自定义对象  内置对象（如日期，数学。。。 他是js定义好的）   浏览器对象
+        // 内置对象 数组 看array.htlm;
+    </script>
+</body>
+
+</html>

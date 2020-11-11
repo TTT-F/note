@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button class="btn"></button>
+    <script>
+        //1、获取页面中的节点（标签）dom节点
+        var box = document.getElementById('box') //这样拿到box盒子了 通过id名获取，只能获取一个
+        var box1 = document.getElementsByTagName('div')[0] //通过标签名获取，获取的一个类数组，里面存的是真正的节点,用下标获取
+        var box2 = document.getElementsByClassName('box')[0] //也是拿到类数组，用下标拿，即使里面有一个
+        var box = document.getElementByName('') //通过name名获取，类数组，通过下标
+
+        //新方法 ie 8+支持，8-不支持（一般见不到）现IE 9+起步
+        var boxx = document.querySelector('.box') //通过css选择器获取，只能获取第一个
+        var boxxx = document.querySelectorAll('.box')[0] //通过css选择器获取，获取类数组，通过下标获取特定某一个
+
+        // 1、属性
+        //（1）事件 原生dom对象.onclick = function(){}
+        // onclick onmouseenter onmouseleave onblur onfocus...
+        document.querySelector('.btn').onclick = function() {
+
+            }
+            //$('.btn') 获取的jq节点 click jq的方法
+
+        // (2)样式 dom对象.style 获取的是高dom节点的所有行内样式集合，就是一个行内样式对象
+        // 可以修改该对象下的属性，来修改样式，改一个写一个
+        //相当于 jq的css方法
+        document.querySelector('.box').style.width = '500px'
+    </script>
+</body>
+
+</html>

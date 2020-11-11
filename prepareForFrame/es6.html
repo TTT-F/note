@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const let 代替 var
+        let num1 = 100
+        num1++
+        console.log(num1)
+        const num2 = 100
+            // num2++
+        console.log(num2)
+            // const 不可以改变值
+
+
+        // 对象解构赋值
+        const obj = {
+            username: 'lily',
+            age: 18,
+            level: 10
+        }
+        obj.size = 1
+        const {
+            username,
+            age
+        } = obj
+        // {}内的变量顺序可以变化，名字一致
+        console.log(username, age)
+            // 数组解构赋值
+        let arr = [1, 2, 3]
+        let [a, b, c] = arr
+        console.log(a, b, c)
+            // 函数参数的解构赋值
+        const obj1 = {
+            username: 'lily1',
+            age: 18,
+            level: 10
+        }
+
+        function show({
+            username,
+            level
+        }) {
+            console.log(this)
+            console.log(`该人物名字${username}`, `level:${level}`)
+        }
+        show(obj1)
+
+        function fun(color = 'red', bgColor = 'black') {
+            console.log(`字体颜色：${color}`)
+            console.log(`背景颜色：${bgColor}`)
+        }
+        fun(color = 'yellow')
+
+        function fun1({
+            color = 'red',
+            bgColor = 'black'
+        }) {
+            console.log(`字体颜色：${color}`)
+            console.log(`背景颜色：${bgColor}`)
+        }
+        fun1({
+                color: 'blue',
+                bgColor: 'green'
+            })
+            // 弊端：不能不传值，即使使用默认值也要传一个空对象
+
+        // 剩余参数-->将剩余的实参变成数组传给rest 剩余参数的名字可以随意取但是 ... 必须有
+        const fun2 = function(a, ...rest) {
+            console.log(a)
+            console.log(rest)
+
+            console.log(arguments)
+            console.log([...arguments])
+        }
+        fun2(1, 2, 3, 4, 5, 6, 7)
+        const fun3 = function() {
+
+
+            console.log(arguments)
+            console.log(Array.from(arguments)) //转换
+        }
+        fun3(1, 2, 3, 4, 5, 6, 7)
+
+        // 箭头函数
+        const add = (num1, num2) => num1 + num2
+        console.log(add(10, 20))
+        const obja = {
+            name: 'lily',
+            say: function() {
+                console.log('this is say-->')
+                console.log(this)
+            },
+            act: () => {
+
+                console.log('this is act-->')
+                console.log(this)
+
+            }
+        }
+        obja.say()
+        obja.act()
+        const lvbu = {
+            name: '吕布',
+            level: 20
+        }
+        lvbu.level = 18
+        console.log(lvbu.level)
+        const lvbu1 = {...lvbu
+        }
+        lvbu1.hobby = '牛'
+        lvbu.level = 18
+            // 原对象(数组)的改变会级联，先对象(数组)和原的没关系
+
+        console.log(lvbu, lvbu1)
+        const arr3 = [1, 2, 3]
+        const arr1 = [...arr3]
+        arr1.push(4)
+        console.log(arr3, arr1)
+        const username1 = 'lily'
+        const age1 = 18
+        const user = {
+            username1,
+            age1
+        }
+        console.log(user)
+        const aa = Symbol('hahh')
+        console.log(aa)
+        console.log(aa.description)
+
+        // set 数据结构
+        const demo = new Set([1, 2, 3, 4, 32, 1, 2])
+        console.log(demo)
+            // 属性
+            // size 返回 set数据的长度
+        console.log(demo.size)
+            // 方法 
+            // add() 向set数据中添加数据(只能添加一个)，返回数据本身
+        console.log(demo.add(9))
+            // delete() 从set数据中删除数据(只能删一个)，返回boolean
+        console.log(demo.delete(9))
+            // has() 查找set数据中是存在，返回boolean
+        console.log(demo.has(32))
+            // clear() 清除所有数据
+            // console.log(demo.clear())
+            // 将set数据转为数组
+        console.log([...demo])
+        class Hero {
+            //constructor是class自带的函数，成为构造器和之前的构造函数类似。
+            //constructor 创建实例化对象时自动触发
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+
+            }
+            say() {
+                console.log('hahha')
+            }
+            level = () => {
+                console.log(18);
+            }
+        }
+        const bb = new Hero('aa', 12)
+        bb.say()
+        bb.level()
+        class CarryHero extends Hero {
+            constructor(name, age) {
+                super(name, age)
+            }
+        }
+        const d = new CarryHero('li', 17)
+        console.log(d);
+    </script>
+</body>
+
+</html>

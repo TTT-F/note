@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构造函数</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数   原型
+
+        // 每个函数都有一个原型，但是只有构造函数的原型是有意义的
+        function Star(name, age) {
+            // 使用this给创建出来的类对象添加属性和方法
+            //this 指向实例化对象
+            // 构造函数内创建私有的，即使是方法也是私有的，改变之后其他对象的调用还是改之前的
+            // 成员  属于这个对象的私有属性
+            this.name = name
+            this.age = age
+            console.log(this)
+        }
+        // 如果想要多个对象有共同的方法，一般要使用 构造函数的原型对象  函数名.prototype
+        //当然也是可以直接在构造函数内写，但是会成为私有的
+        //给多个对象添加公共方法
+        // 公有的用prototype创建
+        //他一改变所有对象调用也会跟着改变
+        Star.prototype.say = function() {
+                console.log(this.name)
+
+                console.log('我会唱歌')
+            }
+            // 创建的对象有私有的属性和公有的方法
+            //一. 实例化对象（构造函数创建出的）他有一个属性__proto__,这个属性就是指向构造函数中的原型的“prototype”。所以这就是为什么对象可以拿到公共的方法了
+            // 实例化对象可以通过看__proto__来看所有公共的方法
+
+        var l = new Star('lily', 20)
+        var m = new Star('max', 18)
+        console.log(l.name, m.name)
+            //   1.
+            // l.say()//-->我会唱歌
+            // Star.prototype.say = function() {
+            //     console.log('我太会唱歌了')
+            // }
+            // m.say()//-->我太会唱歌了
+            // 改变了公共的方法，那么从改变语句往下所有调用都会更改
+
+        // 2.
+        l.say = function() {
+            console.log(this.name)
+            console.log('我太会唱歌了')
+        }
+        l.say() //我太会唱歌了
+        m.say() //-->我会唱歌
+            // 这是因为更改对象的方法并不会改变prototype创建的公有方法，但是更改公有的方法就会改变对象调用的方法
+            // 二.构造函数内原型对象默认会有一个 constructor属性，该属性指向的就是构造函数本身
+            //         原型和构造函数关联起来是因为__proto__里面有一个constructor属性
+        console.log([1, 2, 3])
+
+        // 构造函数原型对象  小应用
+        // （1）给内置对象添加公有方法
+        // 给array添加求和方法
+        Array.prototype.sum = function() {
+            var res = 0
+            for (var i of this) {
+                res = res + i
+            }
+            return res
+        }
+        var arr = [1, 2, 3]
+            // var arr = new Array(1,2,3) 正常用构造函数应该是这样创建的，但是上面的数组创建方法是js简化的
+        console.log(arr.sum())
+            // （2）做兼容  有些方法比较高级，低版本不支持，所以要通过构造函数做兼容
+            // Object.defineProperty(obj,属性名，属性值) 往obj对象1里面添加一个属性2，属性值是3   和 Array.prototype.includes=unction(){}达到目的是一样的
+        Object.defineProperty(Array.prototype, 'aa', function() {
+            // 自己做判断
+            console.log('hahah')
+        })
+        var a = [5, 6, 7]
+        console.log(a)
+        a.aa()
+            // 数组的some函数  针对对象数组
+            //    arr.some(function(){})  测试数组中是不是有一个符合测试条件，符合返回true
+    </script>
+</body>
+
+</html>

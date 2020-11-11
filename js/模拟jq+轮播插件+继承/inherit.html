@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Animal(type) {
+            this.type = type
+
+        }
+        Animal.prototype.sayType = function() {
+            console.log('我是' + this.type)
+        }
+        var bird = new Animal('鸟类')
+        bird.sayType()
+
+        function Bird(name, miles) {
+            this.name = name
+            this.miles = miles
+
+        }
+        // bird1.sing()
+        // 继承 原型链方法
+        // 会自动去找__proto__:Object
+        Bird.prototype = bird
+        Bird.prototype.sing = function() {
+            console.log('I can sing')
+        }
+        var bird1 = new Bird('燕子', '1000')
+        console.log(bird1.name, bird1.miles, bird1.type)
+        console.log(bird1)
+            // bird
+            // {
+            //   type: '',
+            //     __proto__: { }
+            // }
+
+        // // bird1 
+        // var obj = {
+        //   name: '',
+        //   flyMi: '',
+        //   __proto__: {
+        //     sing: function () { },
+        //     type: '',
+        //      __proto__: { sayType}
+        //   }
+        // }
+
+
+        // Object
+        // 1.Object.defineProperties(对象，{元素名：{value：，writable：，...}}) 给对象添加元素，writable默认为false
+        var obj = {
+            name: 'lily',
+            age: '18'
+        }
+        Object.defineProperties(obj, {
+            class: {
+                value: 'class3',
+                    writable: true,
+                    enumerable: true
+            }
+        })
+        console.log(obj.class)
+            // 2.Object.keys(obj) 获取对象属性名的数组(获取到的是可枚举类型的)
+            // 可以使用它来遍历对象
+        console.log(Object.keys(obj))
+    </script>
+</body>
+
+</html>

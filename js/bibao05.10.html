@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>苹果</li>
+        <li>鸭梨</li>
+        <li>西红柿</li>
+        <li>葡萄</li>
+    </ul>
+    <script>
+        // 闭包：一个函数有权访问另一个函数的变量，函数嵌套函数，内永远可以访问外层函数的变量
+        //闭包会将外层作用域内定于的变量一直存储在内存中等待被访问，也就是说子层不执行就会一直保留
+        // 消耗内存，好处可以随时调用
+        // 函数内定义的局部变量当函数执行完毕时就被销毁了，闭包情况除外
+        function fun() {
+            var num = 10
+        }
+        fun()
+            // console.log(num) //不可以
+            // 闭包：指的是作用域的关系，下级永远可以访问上级作用域中的变量
+            //这种情况叫做闭包或 fun1就叫做闭包函数
+
+        function fun1() {
+            var numm = 10
+
+            function fn() {
+                console.log(numm)
+            }
+            fn()
+        }
+        fun1()
+            // 闭包不是这种父子关系也可访问
+            // fun（）这是调用
+            // return fun 返回值
+        function fun2() {
+            var numm = 10
+
+            function fn() {
+                numm++
+                console.log(numm)
+            }
+            return fn //把函数fn返回,把函数当做返回值返回，必须有东西接受它（函数也是一种值），这一步并不是调用
+        }
+        var fun3 = fun2()
+        fun3() //-->11
+        fun3() //--->12
+            //闭包会将外层作用域内定于的变量一直存储在内存中等待被访问，也就是说子层不执行就会一直保留
+
+        // console.log(fun3)
+        //var fun3 = fun2()类似：
+        // var fun3= function (){
+        //     console.log(numm)
+        // }
+        // 这个fun3可以调用了，fun3现在是一个全局函数，而不是在fun2里面的私有函数
+
+        var list = document.querySelectorAll('ul li')
+            // console.log(list)
+            // for (var i = 0; i < list.length; i++) {
+            //     function funn() {
+            //         var ind = i
+            //         list[i].onclick = function() {
+            //             console.log(ind)
+            //         }
+            //     }
+            //     funn()
+            // }
+            //这个for循环生成了四个闭包，每个闭包都存储了ind
+
+        //  如上声明了就调用这种函数，可以写成立即执行函数
+        for (var i = 0; i < list.length; i++) {
+            (function funn() {
+                var ind = i
+                list[i].onclick = function() {
+                    console.log(ind)
+                }
+            })()
+        }
+
+        // 立即执行函数：这个函数不给别人用，定义完了马上执行，不许定义成变量给别人留着
+        // 匿名函数立即执行
+        (function f() {
+            console.log('hhhhh')
+        })();
+
+        //进入页面三秒之后输出所有li的索引值
+        setTimeout(function() { //这种是三秒之后输出全部索引值
+            for (var i = 0; i < list.length; i++) {
+                console.log(i)
+
+            }
+        }, 3000)
+
+        for (var j = 0; j < list.length; j++) {
+            setTimeout(function() { //生成了四个settimeout每个都延迟三秒
+                console.log('haha1111' + j)
+            }, 3000)
+        } //这种三秒之后 输出四个4，for是同步操作，setimeout是异步，异步要等同步执行完之后执行
+
+
+        for (var i = 0; i < list.length; i++) {
+            // 函数的形参相当于定义的变量，传递参数是相当于给这个变量值
+            (function fu(a) {
+
+                setTimeout(function() { //生成了四个settimeout每个都延迟三秒，但是输出0123会同时输出，因为异步不阻塞
+                    console.log('haha' + a)
+                }, 3000)
+            })(i)
+
+        }
+
+
+        // 改变this的指向 ： call apply bind；call和apply使用方法一样，bind不同
+        var obja = {
+            name: 'lily',
+            age: 19,
+            say: function(num) {
+                console.log(num)
+                console.log(this.name)
+            }
+        }
+        var obj1a = {
+            name: 'xiaohong',
+            age: 18
+        }
+
+        // 当obj调用say方法是输出的名是 xiaohong
+        // bind方法把一个函数改成一个新的函数并且将原来的函数内的 this 改变成一个其他的对象
+        // obja.say.bind(obj1a)(1000) 传参就像通常即可//调用say函数，使用bind更改this指向的对象，bind将其改成新函数，然后调用新函数
+        // var fff = obja.say.bind(obj1a)
+        // fff()
+        // 上面两句===obja.say.bind(obj1a)()
+
+
+        // call apply：函数调用时将函数内的this指向修改,不会生成函数
+        // call和apply只有函数传递参数是不一样的
+        // obja.say.call(obj1a，100)
+        // call直接写就行了，有几个参就在后面写几个
+        obja.say.apply(obj1a, [100])
+            // apply是传数组，几个参数组里就写几个
+
+        var arr = [1, 10, 40, 22, 50, 30]
+
+        // var maxNum = Math.max(1,10,40,22,50,30)
+        var maxNum = Math.max.apply(Math, arr)
+            // 用apply方法将this指向的 Math 改成了 Math 并传了arr做参数，对象并没有改变，只是把传参的方式改成了数组方式。max正常是传数字
+        console.log(maxNum + 'maxNUm')
+    </script>
+</body>
+
+</html>
