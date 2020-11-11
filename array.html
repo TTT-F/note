@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array important！！！</title>
+</head>
+
+<body>
+
+    <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+    ">内置对像的方法</a>
+    <div class="list"></div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        // 内置对象   数组array
+        //数组  数据的有序集合 它相当于已经设定好的对象 只需使用就行了
+        //  var arr = ['1','2'....]
+        // 他是有顺序的
+        var arr = ['1', '2', '3']
+        console.log(arr[0])
+
+
+        //内置对象属性属性和方法都是定义好的，不可进行修改，只能使用
+        //数组 属性 length 获取数组的长度（元素个数）
+        console.log(arr.length)
+            //数组 方法 MDN网站
+
+        var numArr = ['1', '2', '3', '4', '5']
+            //在页面中生成一个列表
+            // 创建li并且里面放上数组内对应的内容 添加到 ul 内  执行五次
+            // 1. 创建  ul
+            // 2. 循环 创建 li 添加对应内容  添加到 ul 内
+            // 3. 将 ul 添加到页面上
+        var ul = $('<ul>')
+        for (var i = 0; i < numArr.length; i++) {
+            var li = $('<li>')
+            li.text(numArr[i])
+            ul.append(li)
+        }
+        $('.list').append(ul)
+
+        //方法 
+        // 1、方法是那个对象的 2、方法作用 3、返回值是什么 4、修不修改原来数组
+        // push 向数组末尾添加一个或多个元素，返回新长度，原数组改变
+        var num1 = numArr.push(7)
+        console.log('新长度' + num1, '新数组' + numArr) //-->新长度6 新数组1,2,3,4,5,7
+
+
+        // pop 删除数组做后一个元素 arr.pop() 返回被删除的元素
+        var num2 = numArr.pop()
+        console.log('删除' + num2, '新数组' + numArr) //-->删除7 新数组1,2,3,4,5
+
+        // UNshift 在开头添加一个数或多个，返回新数组的元素个数，原数组改变
+        var num3 = numArr.unshift(8, 9)
+        console.log('新长度' + num3, '新数组' + numArr) //-->新长度7 新数组8,9,1,2,3,4,5
+
+        // shift 删除数组第一个元素，返回删除元素，原数组改变
+        var num4 = numArr.shift()
+        console.log('删除' + num4, '新数组' + numArr) //-->新长度7 新数组8,9,1,2,3,4,5
+
+
+        // contact 数组拼接并返回结果，原数组不变
+        var s1 = [1, 2]
+        var s2 = [3, 4]
+        var s3 = s1.concat(s2)
+        console.log('s3：' + s3, '  s2:' + s2, "  s1:" + s1) //-->s3：1,2,3,4   s2:3,4   s1:1,2
+            // splice（）对数组的元素进行添加或删除，返回被删除元素组成的胡组织
+            // ar.splice（a，b，c） a：添加或删除的位置，b:删除的个数《，c:添加的元素
+        var s4 = s3.splice(2, 1)
+        console.log('s4:' + s4, ' s3:' + s3) //-->s4:3  s3:1,2,4
+
+        var s6 = [1, 2, 3, 4, 5, 6, 7]
+        var s5 = s6.splice(1, 2, 8)
+        console.log('s5:' + s5, ' s6:' + s6) //-->s5:2,3  s6:1,8,4,5,6,7
+
+        // slice（）数组的截取，返回截取的数组 原数组不变
+        // srr.slice（a，b）a开始，b结束，包括a不包括b
+        // arr。slice（0）截取整个数组（复制一个）
+        // indexof（）返回位置，不存在返回-1
+        // reverse 颠倒数组的顺序 原数组改变
+        // 3,9,1——>1,9,3
+        var s7 = [1, 2]
+        s7.reverse()
+        console.log('s7:' + s7) //-->2,1
+
+
+        // includes 是否存在某个数组 返回true false
+        var s8 = [1, 2, 3]
+        var a = s8.includes(2);
+        console.log(a) //-->true
+
+        // join 将数组拼接成字符串，原不变
+        // arr.join（""）将数组元素直接拼成字符串，不加任何符号
+        var s9 = [1, 2, 3]
+        var str1 = s9.join();
+        var str2 = s9.join("");
+        var str3 = s9.join('-')
+        console.log(str1, str2, str3) //1,2,3 , [1, 2, 3]
+
+        // sort 对数组排序 返回排序后的数组 原数组变, 会按照字符形式排序，对数字也是先变成字符然后在排序
+        var test = [2, 1, 100, 3]
+        console.log(test.sort()) // -- > [1, 100, 2, 3]
+
+        // 数字数组排序 a-b:升序， b-a:倒序
+        var currentArr = [7, 6, 8, 200, 600, 100, 54, 63, 28]
+
+        var res = currentArr.sort(function(a, b) {
+                return a - b
+            })
+            // tip：这种方法也可对数组内的对象进行排序、，可按数字字符来排序。
+        var arra = [{
+                name: '小王',
+                score: 100
+            }, {
+                name: '小猪',
+                score: 80
+            }, {
+                name: '小马',
+                score: 87
+            }, {
+                name: '小哇',
+                score: 82
+            }
+
+        ]
+
+        var rst = arra.sort(function(a, b) {
+            return b.score - a.score
+        })
+
+
+        console.log(res, rst)
+
+
+
+        //filter 筛选 返回一个新数组 原数组不变
+        var arr = ['1', '2', '3', '4', "20", '10', '30']
+        var newarr = arr.filter(function(item) {
+            return item.includes('1')
+        })
+        console.log(newarr, arr)
+
+        //map 用原来数组创建一个想要的数组（别的）返回一个新数组 原数组不变
+        var arr2 = arr.map(function(item1) {
+            return item1 + '哈哈'
+        })
+        console.log(arr2, arr)
+
+        //forEach 遍历数组 item 存放数组里当前位置的值，index 下标 ，array数组 
+
+        arr.forEach(function(item, index) {
+            console.log('arr[' + index + ']:' + item)
+        })
+
+
+        //find 找第一个符合的元素 返回一个新数组 原数组不变
+        var words = ['haha', 'hihihi', 'hehe', 'heihei']
+        var word = words.find(function(item) {
+            return item.includes('h')
+        })
+        var numaaa = [30, 1, 2, 11, 4, 3, 20]
+        var sort = numaaa.sort(function(a, b) {
+            return a - b
+
+        })
+        console.log(sort)
+            //find 找第一个符合的元素的索引值 返回一个数组，不存在返回-1 原数组不变
+            //find findindex 和indexof（）很像，前者两个可以判断对象数组，后者不可以 这三个方法都是找到匹配的第一个
+        var findInd = words.findIndex(function(item) {
+            return item.includes('he')
+        })
+        console.log(word, words, findInd)
+
+        //every  判断所有元素是否都符合同一条件， 返回boolean值  当所有函数元素的函数返回值都为true时，则函数整体返回true，否则false
+        var e = words.every(function(item) {
+            return item.includes('h')
+        })
+        console.log(e)
+
+        function show() {
+            console.log('每一秒显示一次')
+        }
+        // var sh = setInterval(show, 1000)
+    </script>
+</body>
+
+</html>
